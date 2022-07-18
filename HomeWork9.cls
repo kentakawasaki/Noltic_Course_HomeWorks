@@ -11,15 +11,15 @@ public with sharing class HomeWork9 {
         }
         return MyList;
     }
-    public static String Task2(String Name,List<Contact> contact){
+    public static Contact Task2(String Name,List<Contact> contact){
         for(Contact contacts:contact){
             if(contacts.FirstName == Name){
-                return contacts.FirstName;
+                return contacts;
             }
         }
-        return 'this contact is not in the list';
+        return null;
     }
-    public static Decimal Task3(List<Opportunity> Opportunityes){
+    public static Opportunity Task3(List<Opportunity> Opportunityes){
         Decimal temp = 0;
         for(Opportunity opp:Opportunityes) {
             if(opp.Amount > temp){
@@ -28,7 +28,7 @@ public with sharing class HomeWork9 {
         }
         for(Opportunity opp:Opportunityes) {
             if (temp == opp.Amount) {
-                return opp.Amount;
+                return opp;
             }
         }
 
