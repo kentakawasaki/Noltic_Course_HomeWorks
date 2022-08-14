@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Conventor</title>
+    <link rel="stylesheet" href="style.css">
+   </head>
+  </head>
+  <body>
+    
+    <form > 
+        <label for="inputDume">Dume:</label>
+        <input id="inputDume" type="number" placeholder="Dume"
+        oninput="lengthConvertertoSm(this.value)" onchange="lengthConvertertoSm(this.value)">
+    </div>
+      
+            
+
+    <label for="inputSaMetersDm">Sm:</label>
+            <input id="inputSaMetersDm" type="number" placeholder="Sm" 
+            oninput="lengthConvertertoDume(this.value)" onchange="lengthConvertertoDume(this.value)">
+       </div>
+        
+    </form>
+
+    <form>
+
+        <label for="inputFute">Fute</label>
+        <input id="inputFute" type="number" placeholder="Fute"
+        oninput="lengthConvertertoSmtOFute(this.value)" onchange="lengthConvertertoSmtOFute(this.value)">
+
+        <label  for="inputSmFt">Sm:</label> 
+        <input id="inputSmFt" type="number" placeholder="Sm"
+        oninput="lengthConvertertoFuteToSm(this.value)" onchange="lengthConvertertoFuteToSm(this.value)">
+        
+    </form>
+
+    <form>
+
+        <label  for="inputYard">Yard</label>
+        <input id="inputYard" type="number" placeholder="Yard"
+        oninput="lengthConvertertoYardtoMeters(this.value)" onchange="lengthConvertertoYardtoMeters(this.value)">
+
+        <label for="inputM">Mt:</label> 
+        <input id="inputM" type="number" placeholder="Meters"
+        oninput="lengthConvertertoMeterstoYard(this.value)" onchange="lengthConvertertoMeterstoYard(this.value)">
+        
+    </form>
+
+    <form>
+
+        <label for="inputMiles">Miles</label>
+        <input id="inputMiles" type="number" placeholder="Miles"
+        oninput="lengthConvertertoMilestoKilmiters(this.value)" onchange="lengthConvertertoMilestoKilmiters(this.value)">
+
+        <label for="inputKilomiters">Kilomiters:</label> 
+        <input id="inputKilomiters" type="number" placeholder="Kilomiters"
+        oninput="lengthConvertertoKilomiterstoMiles(this.value)" onchange="lengthConvertertoKilomiterstoMiles(this.value)">
+        
+    </form>
+
+        
+
+    
+    
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+  </body>
+</html>

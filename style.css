@@ -1,0 +1,32 @@
+input {
+  color: rgb(14, 146, 234);
+  border-radius: 3%;
+}
+input :focus {
+  background-color: lightblue;
+  box-shadow: 0 0 0 4px rgba(231, 239, 4, 0.2);
+}
+* {
+  font: 1em sans-serif;
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  background: #3cbc8d;
+  font: 100% / normal sans-serif;
+}
+
+[type="number"] {
+  outline: 0;
+  border: 1px solid #999;
+}
+form {
+  box-sizing: border-box;
+  padding: 2rem;
+  border-radius: 1rem;
+  background-color: hsl(220, 39%, 86%);
+  border: 4px solid hsl(219, 94%, 26%);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
