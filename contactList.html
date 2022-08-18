@@ -1,0 +1,13 @@
+<template>
+    <lightning-card>
+        <ul class="slds-m-around_medium">
+            <template for:each={contacts} for:item="contactparent">
+                <li key={contactparent.Id}>
+                    <c-contact contactchild= {contactparent}></c-contact>
+                </li>
+
+            </template>
+
+        </ul>
+    </lightning-card>
+</template>
