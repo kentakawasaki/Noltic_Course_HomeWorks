@@ -1,0 +1,24 @@
+<template>
+    <lightning-card title="Contacts">
+        <template if:true={contacts.data}>
+            <ul class='slds-p-left_medium'>
+                <template for:each={contacts.data} for:item='contact'>
+                    <li key={contact.Id} class='slds-p-bottom_medium'>
+                        <c-related-contacts-child contact={contact}></c-related-contacts-child>
+                    </li>
+                </template>
+            </ul>
+        </template>
+        <div class="slds-p-left_medium">
+            <lightning-layout-item size="6">
+            <lightning-button class="slds-size_full" label="Add Contact" title="Add Contact" onclick={addContact}>Add Contact</lightning-button>
+            </lightning-layout-item>
+        </div>
+        <template if:true={showForm}>
+            <div class="slds-p-left_medium">
+                <lightning-input label='Last Name' title='Last Name' onchange={handleNameChange}></lightning-input>
+                <lightning-button label="Save Contact" onclick={createContact}></lightning-button>
+            </div>
+        </template>
+    </lightning-card>
+</template>
