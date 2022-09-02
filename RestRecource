@@ -1,0 +1,104 @@
+@RestResource(UrlMapping='/opportunity/*')
+global class RestResource {
+   final static String lastEndpointSection = 'opportunity';
+       @HttpGet
+   global static void getOpportunity() {
+       RestRequest req = RestContext.request;
+       RestResponse res = RestContext.response;
+       String opportunityId = req.requestUri.substring(
+               req.requestURI.lastIndexOf(lastEndpointSection) + lastEndpointSection.length())
+               .removeStart('/');
+       if (String.isBlank(opportunityId)) {
+           res.statusCode = 400;
+           res.responseBody = Blob.valueOf('Error value = null');
+          
+           return;
+       }
+      
+       res.headers.put('Content-Type', 'application/json');
+       res.responseBody = Blob.valueOf(JSON.serializePretty([
+               SELECT Id,CloseDate,Name
+               FROM Opportunity
+               WHERE Id = :opportunityId
+       ]));
+   }
+    @HttpPost
+    global static void createOpportunity(String name, Date closedate) {
+        RestResponse res = RestContext.response;
+        
+        Opportunity opportunity = new Opportunity();
+        opportunity.name = name;
+        opportunity.closedate = closedate;
+        insert opportunity;
+                
+        res.headers.put('Content-Type', 'application/json');
+        res.responseBody = Blob.valueOf(JSON.serialize(opportunity));        
+    }
+    @HttpPatch
+    global static void updateOpportunity(String stageName){
+        RestRequest req = RestContext.request;
+        RestResponse res = RestContext.response;
+        String opportunityId = req.requestUri.substring(
+               req.requestURI.lastIndexOf(lastEndpointSection) + lastEndpointSection.length())
+               .removeStart('/');
+        if(String.isBlank(opportunityId)){
+           res.statusCode = 400;
+           res.responseBody = Blob.valueOf('Error value = null');
+          
+           return;
+        }
+        List<Opportunity> opportunitys = [SELECT Id FROM Opportunity WHERE Id = :opportunityId];
+        if (opportunitys.isEmpty()){
+           res.statusCode = 404;
+           res.responseBody = Blob.valueOf('Error value no found');
+          
+           return;
+        }
+        Opportunity opportunity = opportunitys.get(0);
+        
+        Opportunity.stageName = stageName;
+        update opportunity;
+              
+        res.headers.put('Content-Type', 'application/json');
+        res.responseBody = Blob.valueOf(JSON.serialize(opportunity)); 
+        
+        
+    }
+              
+          
+    @HttpDelete
+    global static void deleteOpportunit() {
+        RestRequest req = RestContext.request;
+        RestResponse res = RestContext.response;
+        
+        String opportunityId = req.requestUri.substring(
+               req.requestURI.lastIndexOf(lastEndpointSection) + lastEndpointSection.length())
+               .removeStart('/');
+        if (String.isBlank(opportunityId)) {
+           res.statusCode = 400;
+           res.responseBody = Blob.valueOf('Error value = null');
+          
+           return;
+        }
+        List<Opportunity> opportunitys = [SELECT Id FROM Opportunity WHERE Id = :opportunityId];
+        if (opportunitys.isEmpty()){
+           res.statusCode = 404;
+           res.responseBody = Blob.valueOf('Error value no found');
+          
+           return;
+        }
+        
+        delete opportunitys;
+        
+ 	}
+    
+}
+   
+     
+       
+        
+        
+        
+             
+                    
+                                         
