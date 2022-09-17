@@ -1,0 +1,28 @@
+global with sharing class ChangeAccountNamesBatch implements Database.Batchable<sObject>,Schedulable{
+
+    global Database.QueryLocator start(Database.BatchableContext bc) {
+        return Database.getQueryLocator(
+                'SELECT ID, Name FROM Account WHERE Name=:Michael'
+        );
+    }
+
+    public void execute(Database.BatchableContext bc, List<Account> scope) {
+        List<Account> accounts = new List<Account>();
+        for (Account account : scope){
+            account.Name = 'Mike';
+            accounts.add(account);
+        }
+        update accounts;
+    }
+
+    public void finish(Database.BatchableContext bc ) {
+        System.debug('BatchApexClassExample Batch job completed successfully.');
+
+    }
+
+
+    global void execute(SchedulableContext sc) {
+        ChangeAccountNamesBatch b = new ChangeAccountNamesBatch();
+        Database.executeBatch(b);
+    }
+}
