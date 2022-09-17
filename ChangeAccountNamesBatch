@@ -2,15 +2,18 @@ global with sharing class ChangeAccountNamesBatch implements Database.Batchable<
 
     global Database.QueryLocator start(Database.BatchableContext bc) {
         return Database.getQueryLocator(
-                'SELECT ID, Name FROM Account WHERE Name=:Michael'
+                'SELECT ID, Name FROM Account'
         );
     }
 
     public void execute(Database.BatchableContext bc, List<Account> scope) {
         List<Account> accounts = new List<Account>();
         for (Account account : scope){
-            account.Name = 'Mike';
-            accounts.add(account);
+            if(account.Name == 'Michael'){
+                account.Name = 'Mike';
+                accounts.add(account);
+            }
+
         }
         update accounts;
     }
